@@ -15,7 +15,7 @@ reqButton.onclick = function () {
   reqStatus.innerHTML = "Request started...";
 
   // Fetch image request data
-  const key ="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";
+ const key = document.getElementById('api-key').value;
   const prompt = document.getElementById('text-prompt').value;
   const radios = document.getElementsByName('text-model');
   let model;
