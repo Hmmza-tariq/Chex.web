@@ -15,7 +15,7 @@ reqButton.onclick = function () {
   reqStatus.innerHTML = "Request started...";
 
   // Fetch image request data
- const key = document.getElementById('api-key').value;
+  const key = document.getElementById('api-key').value;
   const prompt = document.getElementById('text-prompt').value;
   const radios = document.getElementsByName('text-model');
   let model;
@@ -25,8 +25,8 @@ reqButton.onclick = function () {
       break;
     }
   }
-  const tokens = Number(document.getElementById('token-count').value);
-  const temp = Number(document.getElementById('temperature').value);
+//   const tokens = Number(document.getElementById('token-count').value);
+//   const temp = Number(document.getElementById('temperature').value);
 
   // We won't do error-checking here, will leave that up to the server...
 
@@ -35,8 +35,8 @@ reqButton.onclick = function () {
   const reqBody = {
     model: model,
     prompt: prompt,
-    max_tokens: tokens,
-    temperature: temp,
+    max_tokens: 256,
+    temperature: 0.1,
     top_p: 0.5,
     stream: false,
     logprobs: null,
