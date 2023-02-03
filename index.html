@@ -1,5 +1,122 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+
+  .header {
+    background-color: #6495ED;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 36px;
+    color: white;
+  }
+
+  .input-section {
+    background-color: #e5e5e5;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .input-section input[type="text"] {
+    padding: 10px;
+    font-size: 18px;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  #button-request {
+    padding: 10px 20px;
+    background-color: #6495ED;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  .output-section {
+    background-color: #e5e5e5;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .output-section div {
+      padding: 10px;
+      font-size: 18px;
+      height: 20px;
+      margin-bottom: 20px;
+      resize: none;
+    }
+
+  .request-section p {
+    font-size: 13px;
+    height: 20px;
+    margin-bottom: 20px;
+    resize: none;
+  }
+</style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Chex</h1>
+    </div>
+    <div class="input-section">
+      <form>
+        <input type="text"  id="api-key" placeholder="Enter your API here">
+        <input type="text" id="text-prompt"  placeholder="Enter your input here">
+        <p class="models">
+          <div>Text Model:</div>
+          <span>
+            <input type="radio" id="model-davinci" name="text-model" value="text-davinci-003">
+            <label for="text-davinci-003">Davinci (better)</label>
+          </span>
+          <span>
+            <input type="radio" id="model-curie" name="text-model" value="text-curie-001">
+            <label for="text-curie-001">Curie</label>
+          </span>
+          <span>
+            <input type="radio" id="model-babbage" name="text-model" value="text-babbage-001">
+            <label for="text-babbage-001">Babbage</label>
+          </span>
+          <span>
+            <input type="radio" id="model-ada" name="text-model" value="text-ada-001" checked>
+            <label for="text-ada-001">Ada (faster)</label>
+        </span></p>
+        <div>
+            <button  type="submit" id="button-request">Submit</button>
+        </div>
+
+        </form>
+    </div>
+    
+ 
+    <div class="output-section">
+        
+        <div>
+            <p id="request-status">No request performed yet</p>
+        </div>
+         
+       <div id="text-container"></div>
+
+        <!-- <legend>Text Completions</legend>
+      <textarea placeholder="Output will appear here" id="text-container">    Received text will be added here 
+    </textarea> -->
+    </div>
+  </body>
+  <script type="text/javascript" src="script.js"></script>
+</html>
+<!-- <!DOCTYPE html>
+<html>
 
 <head>
     <title>Chex</title>
@@ -40,13 +157,13 @@
             <label for="text-ada-001">Ada (faster)</label>
         </div>
 
-        <!-- <div>
+   <div>
             <div>Max. tokens (similar to words): <input id="token-count" value="256"></div>
         </div>
 
         <div>
             <div>Temperature (0-1): <input id="temperature" value="0.1"></div>
-        </div> -->
+        </div> 
 
         <div>
             <button id="button-request">Request</button>
@@ -64,12 +181,12 @@
     <fieldset>
         <legend>Text Completions</legend>
         
-        <!-- Received text will be added here -->
+         Received text will be added here 
         <div id="text-container"></div>
     </fieldset>
 
-    <!-- Load the main script at the end of the page, when all the DOM elements are already present -->
+  Load the main script at the end of the page, when all the DOM elements are already present 
     <script type="text/javascript" src="script.js"></script>
 </body>
 
-</html>
+</html> -->
