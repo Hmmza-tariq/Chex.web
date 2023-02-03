@@ -120,7 +120,7 @@ function addText(jsonData, prompt) {
     }
     const reasonDiv = document.createElement('div');
     reasonDiv.className = "reason";
-    const reasonP = document.createElement('p');
+    const reasonP = document.createElement('div');
     reasonP.innerHTML = reasonData;
     reasonDiv.appendChild(reasonP);
 
