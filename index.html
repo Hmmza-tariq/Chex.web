@@ -8,18 +8,19 @@
       }
   body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #018685;
+    color: #00DBC7;
   }
 
   .header {
-    background-color: #6495ED;
+    background-color: #018685;
     padding: 30px;
     text-align: center;
   }
 
   .header h1 {
     font-size: 36px;
-    color: white;
+    color: #00DBC7;
   }
 
   .models{
@@ -27,7 +28,7 @@
     flex-wrap: wrap;
   }
   .input-section {
-    background-color: #e5e5e5;
+    background-color: #00756A;
     padding: 20px;
     text-align: center;
   }
@@ -37,19 +38,21 @@
     font-size: 18px;
     width: 80%;
     margin-bottom: 20px;
+    background-color: #009586;
+
   }
 
   #button-request {
     padding: 10px 20px;
-    background-color: #6495ED;
-    color: white;
+    background-color: #00756A;
+    color: #00DBC7;
     border: none;
     cursor: pointer;
     margin-top: 20px;
   }
 
   .output-section {
-    background-color: #e5e5e5;
+    background-color: #00756A;
     padding: 20px;
     text-align: center;
   }
@@ -112,78 +115,3 @@
   </body>
   <script type="text/javascript" src="script.js"></script>
 </html>
-<!-- <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Chex</title>
-
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-
-<body>
-    <fieldset>
-        <legend>Setup</legend>
-
-        <div id="controls">
-            Please enter your OpenAI API key:
-            <input id="api-key" value="YOUR-API-KEY-HERE">
-        </div>
-    </fieldset>
-    
-    <fieldset>
-        <legend>Prompt</legend>
-
-        <textarea id="text-prompt" rows="4" cols="52">SAY HELLO IN URDU</textarea>
-   
-        <div>Text Model:</div>
-        <div>
-            <input type="radio" id="model-davinci" name="text-model" value="text-davinci-003">
-            <label for="text-davinci-003">Davinci (better)</label>
-        </div>
-        <div>
-            <input type="radio" id="model-curie" name="text-model" value="text-curie-001">
-            <label for="text-curie-001">Curie</label>
-        </div>
-        <div>
-            <input type="radio" id="model-babbage" name="text-model" value="text-babbage-001">
-            <label for="text-babbage-001">Babbage</label>
-        </div>
-        <div>
-            <input type="radio" id="model-ada" name="text-model" value="text-ada-001" checked>
-            <label for="text-ada-001">Ada (faster)</label>
-        </div>
-
-   <div>
-            <div>Max. tokens (similar to words): <input id="token-count" value="256"></div>
-        </div>
-
-        <div>
-            <div>Temperature (0-1): <input id="temperature" value="0.1"></div>
-        </div> 
-
-        <div>
-            <button id="button-request">Request</button>
-        </div>
-
-    </fieldset>
-
-    <fieldset>
-        <legend>Request Status</legend>
-        <div>
-            <p id="request-status">No request performed yet</p>
-        </div>
-    </fieldset>
-    
-    <fieldset>
-        <legend>Text Completions</legend>
-        
-         Received text will be added here 
-        <div id="text-container"></div>
-    </fieldset>
-
-  Load the main script at the end of the page, when all the DOM elements are already present 
-    <script type="text/javascript" src="script.js"></script>
-</body>
-
-</html> -->
