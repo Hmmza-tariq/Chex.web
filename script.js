@@ -112,7 +112,7 @@ function addText(jsonData, prompt) {
         reasonData = "(Text generation stopped due to text length)"
         break;
       case "stop":
-        reasonData = "<--->"
+        reasonData = "<END>"
         break;
       default:
         reasonData = "(Text generation stopped due to unknown reasons)"
@@ -135,3 +135,12 @@ function addText(jsonData, prompt) {
   // Log some feedback
   reqStatus.innerHTML = jsonData.choices.length +' responses received for "' + prompt + '"';
 }
+
+var textContainer = document.getElementById("text-container");
+  var speakerButton = document.getElementById("speaker-button");
+
+  speakerButton.addEventListener("click", function() {
+    var text = textContainer.textContent;
+    var utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance);
+  });
