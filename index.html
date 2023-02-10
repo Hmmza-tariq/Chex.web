@@ -18,7 +18,7 @@
       background: -ms-linear-gradient(180deg, rgba(76, 175, 80, 1) 0%, rgba(0, 150, 136, 1) 50%, rgba(49, 220, 255, 1) 100%);
       background: linear-gradient(180deg, rgba(76, 175, 80, 1) 0%, rgba(0, 150, 136, 1) 50%, rgba(49, 220, 255, 1) 100%);
       color: #004D4D;
-      width: 50%;
+      width: 75%;
       margin: 0 auto;
       text-align: center;
     }
@@ -52,6 +52,7 @@
       margin: 10px;
       border: 2px solid #004D4D;
       border-radius: 20px;
+      width: 70vw;
     }
 
     .input-section input[type="text"] {
@@ -74,7 +75,18 @@
       border: 3px solid #004D4D;
       border-radius: 12px;
     }
+    .radio-container {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
 
+    .radio-input {
+      display: flex;
+      align-items: center;
+      padding-left: 40%;
+    }
     .output-section {
       color: #00DBC7;
       background-color: #00756A;
@@ -83,6 +95,7 @@
       margin: 10px;
       border: 2px solid #004D4D;
       border-radius: 20px;
+      width: 70vw;
     }
 
     .output-section div {
@@ -117,25 +130,24 @@
   <div class="input-section">
     <p class="models">
     <h3>Text Model:</h3>
-    <span>
+    <div class="radio-container">
+    <div class="radio-input">
       <input type="radio" id="model-davinci" name="text-model" value="text-davinci-003">
       <label for="text-davinci-003">Davinci (better)</label>
-    </span>
-    <br>
-    <span>
+    </div>
+    <div class="radio-input">
       <input type="radio" id="model-curie" name="text-model" value="text-curie-001">
       <label for="text-curie-001">Curie</label>
-    </span>
-    <br>
-    <span>
+    </div>
+    <div class="radio-input">
       <input type="radio" id="model-babbage" name="text-model" value="text-babbage-001">
       <label for="text-babbage-001">Babbage</label>
-    </span>
-    <br>
-    <span>
+    </div>
+    <div class="radio-input">
       <input type="radio" id="model-ada" name="text-model" value="text-ada-001" checked>
       <label for="text-ada-001">Ada (faster)</label>
-    </span>
+    </div>
+  </div>
     <br><br>
     </p>
     <div>
