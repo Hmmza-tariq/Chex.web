@@ -65,7 +65,8 @@
       border-radius: 10px;
     }
 
-    #button-request {
+    #button-request,
+    #speaker-button{
       padding: 10px 20px;
       background-color: #00756A;
       color: #00DBC7;
@@ -74,6 +75,13 @@
       margin-bottom: 10px;
       border: 3px solid #004D4D;
       border-radius: 12px;
+    }
+
+    #speaker-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: fit-content;
     }
     .radio-container {
       display: flex;
@@ -85,7 +93,7 @@
     .radio-input {
       display: flex;
       align-items: center;
-      padding-left: 10vw;
+      padding-left: 40%;
     }
     .output-section {
       color: #00DBC7;
@@ -164,6 +172,14 @@
   <div class="output-section">
     <div id="text-container">output</div>
   </div>
+  <button id="speaker-button"><svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.122 2.448S15.061 7.5 11.25 7.5h-7.5a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 .75.75h7.5c3.81 0 7.872 5.073 7.872 5.073.284.375 1.128.119 1.128-.46V2.906c0-.577-.797-.882-1.128-.458Z"></path>
+    <path d="M3 12s-.75-.281-.75-1.5C2.25 9.281 3 9 3 9"></path>
+    <path d="M21 11.531s.75-.203.75-1.031c0-.828-.75-1.031-.75-1.031"></path>
+    <path d="M12 7.5v6"></path>
+    <path d="M5.25 7.5v6"></path>
+    <path d="M6.75 13.5v7.875a.375.375 0 0 0 .375.375h2.484a.75.75 0 0 0 .717-.972C9.933 19.518 9 18.098 9 15.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75H9"></path>
+  </svg></button>
 </body>
 <script type="text/javascript" src="script.js"></script>
 
