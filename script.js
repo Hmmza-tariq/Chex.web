@@ -112,7 +112,7 @@ function addText(jsonData, prompt) {
         reasonData = "(Text generation stopped due to text length)"
         break;
       case "stop":
-        reasonData = "(Model decided this length of an answer was sufficient)"
+        reasonData = "<--->"
         break;
       default:
         reasonData = "(Text generation stopped due to unknown reasons)"
