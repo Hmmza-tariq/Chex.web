@@ -1,4 +1,3 @@
-
 const pauseUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M9 4.5h-.75v15H9v-15Z"></path><path d="M15.75 4.5H15v15h.75v-15Z"></path> </svg>`;
 const listeningUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -21,10 +20,10 @@ const soundUI = `<svg width="25" height="25" fill="none" stroke="currentColor" s
 <path d="M6.75 13.5v7.875a.375.375 0 0 0 .375.375h2.484a.75.75 0 0 0 .717-.972C9.933 19.518 9 18.098 9 15.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75H9"></path>
 </svg>`;
 
-var textContainer = document.getElementById("text-container");
 var speakerButton = document.getElementById("speaker-button");
 var speaking = false;
 speakerButton.addEventListener("click", function () {
+  var textContainer = document.getElementById("text-container");
   if (speaking) {
     window.speechSynthesis.pause();
     speakerButton.innerHTML = pauseUI;
@@ -35,26 +34,30 @@ speakerButton.addEventListener("click", function () {
     var utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
     speaking = true;
- }
+    utterance.addEventListener("end", function () {
+      speaking = false;
+    });
+  }
 });
+
 var textPrompt = document.getElementById("text-prompt");
 var microphoneButton = document.getElementById("microphone-button");
-var recognition = new SpeechRecognition();
+var recognition = new webkitSpeechRecognition() || SpeechRecognition;
 var listening = false;
-microphoneButton.addEventListener("click", function() {
-  if(listening){
+microphoneButton.addEventListener("click", function () {
+  if (listening) {
     microphoneButton.innerHTML = micUI;
     recognition.stop();
     listening = false;
-  }else{
+  } else {
     microphoneButton.innerHTML = listeningUI;
     recognition.interimResults = false;
     recognition.lang = "en-US";
     recognition.start();
-    recognition.onresult = function(event) {
+    recognition.onresult = function (event) {
       textPrompt.value = event.results[0][0].transcript;
       listening = true;
-    }
+    };
   }
 });
 
