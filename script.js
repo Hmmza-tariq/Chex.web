@@ -39,7 +39,7 @@ speakerButton.addEventListener("click", function () {
 });
 var textPrompt = document.getElementById("text-prompt");
 var microphoneButton = document.getElementById("microphone-button");
-var recognition = new webkitSpeechRecognition || SpeechRecognition;
+var recognition = new SpeechRecognition();
 var listening = false;
 microphoneButton.addEventListener("click", function() {
   if(listening){
