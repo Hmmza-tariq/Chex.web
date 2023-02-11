@@ -22,28 +22,38 @@ const soundUI = `<svg width="25" height="25" fill="none" stroke="currentColor" s
 
 var speakerButton = document.getElementById("speaker-button");
 var speaking = false;
-speakerButton.addEventListener("click", function () {
-  var text = textContainer.textContent;
-  var utterance = new SpeechSynthesisUtterance(text);
+function speak() {
   var textContainer = document.getElementById("text-container");
-  if (speaking) {
-    window.speechSynthesis.pause();
-    speakerButton.innerHTML = pauseUI;
-    speaking = false;
-  } else {
-    speakerButton.innerHTML = soundUI;
-    window.speechSynthesis.speak(utterance);
-    speaking = true;
-    utterance.addEventListener("end", function () {
-      speaking = false;
-    });
+  var text = textContainer.textContent;
+  if ('speechSynthesis' in window) {
+    var msg = new SpeechSynthesisUtterance();
+    msg.text = text;
+    window.speechSynthesis.speak(msg);
   }
-});
+}
+// speakerButton.addEventListener("click", function () {
+ // var text = textContainer.textContent;
+//   var utterance = new SpeechSynthesisUtterance(text);
+ // var textContainer = document.getElementById("text-container");
+//   if (speaking) {
+//     window.speechSynthesis.pause();
+//     speakerButton.innerHTML = pauseUI;
+//     speaking = false;
+//   } else {
+//     speakerButton.innerHTML = soundUI;
+//     window.speechSynthesis.speak(utterance);
+//     speaking = true;
+//     utterance.addEventListener("end", function () {
+//       speaking = false;
+//     });
+//   }
+// });
 
 var textPrompt = document.getElementById("text-prompt");
 var microphoneButton = document.getElementById("microphone-button");
 var recognition = new webkitSpeechRecognition() || SpeechRecognition;
 var listening = false;
+
 // microphoneButton.addEventListener("click", function () {
 //   if (listening) {
 //     microphoneButton.innerHTML = micUI;
