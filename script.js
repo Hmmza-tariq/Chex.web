@@ -139,24 +139,23 @@ function addText(jsonData, prompt) {
 var textContainer = document.getElementById("text-container");
 var speakerButton = document.getElementById("speaker-button");
 var speaking = false;
-
-speakerButton.addEventListener("click", function() {
+const pauseUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 4.5h-.75v15H9v-15Z"></path><path d="M15.75 4.5H15v15h.75v-15Z"></path> </svg>`;
+const soundUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.122 2.448S15.061 7.5 11.25 7.5h-7.5a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 .75.75h7.5c3.81 0 7.872 5.073 7.872 5.073.284.375 1.128.119 1.128-.46V2.906c0-.577-.797-.882-1.128-.458Z"></path>
+<path d="M3 12s-.75-.281-.75-1.5C2.25 9.281 3 9 3 9"></path>
+<path d="M21 11.531s.75-.203.75-1.031c0-.828-.75-1.031-.75-1.031"></path>
+<path d="M12 7.5v6"></path>
+<path d="M5.25 7.5v6"></path>
+<path d="M6.75 13.5v7.875a.375.375 0 0 0 .375.375h2.484a.75.75 0 0 0 .717-.972C9.933 19.518 9 18.098 9 15.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75H9"></path>
+</svg>`;
+speakerButton.addEventListener("click", function () {
   if (speaking) {
     window.speechSynthesis.pause();
-    speakerButton.innerHTML(<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9 4.5h-.75v15H9v-15Z"></path>
-    <path d="M15.75 4.5H15v15h.75v-15Z"></path>
-  </svg>);
+    speakerButton.innerHTML = pauseUI;
     speaking = false;
   } else {
-    speakerButton.innerHTML(<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19.122 2.448S15.061 7.5 11.25 7.5h-7.5a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 .75.75h7.5c3.81 0 7.872 5.073 7.872 5.073.284.375 1.128.119 1.128-.46V2.906c0-.577-.797-.882-1.128-.458Z"></path>
-    <path d="M3 12s-.75-.281-.75-1.5C2.25 9.281 3 9 3 9"></path>
-    <path d="M21 11.531s.75-.203.75-1.031c0-.828-.75-1.031-.75-1.031"></path>
-    <path d="M12 7.5v6"></path>
-    <path d="M5.25 7.5v6"></path>
-    <path d="M6.75 13.5v7.875a.375.375 0 0 0 .375.375h2.484a.75.75 0 0 0 .717-.972C9.933 19.518 9 18.098 9 15.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75H9"></path>
-  </svg>)
+    speakerButton.innerHTML = soundUI;
     var text = textContainer.textContent;
     var utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
