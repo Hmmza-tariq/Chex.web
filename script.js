@@ -1,5 +1,61 @@
-// We can define here the behavior for the elements on the website...
 
+const pauseUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 4.5h-.75v15H9v-15Z"></path><path d="M15.75 4.5H15v15h.75v-15Z"></path> </svg>`;
+const listeningUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.737 15.504C17.894 14.04 19.5 11.782 19.5 9a7.5 7.5 0 0 0-15 0v9.683c0 2.075 1.675 3.817 3.75 3.817s3.133-1.216 3.623-1.875c.692-.929 1.955-3.823 3.864-5.12Z"></path>
+<path d="M7.5 14.25V8.625C7.5 6.356 9.525 4.5 12 4.5s4.5 1.856 4.5 4.125"></path>
+<path d="M7.5 11.204c1.172-.844 3.742-.703 3.742-.703 1.218 0 1.93 1.379 1.218 2.372 0 0-1.728 1.987-1.962 2.878"></path>
+</svg>`;
+const micUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 21h6"></path>
+<path d="M18 9.75v1.5c0 3.3-2.7 6-6 6s-6-2.7-6-6v-1.5"></path>
+<path d="M12 17.25V21"></path>
+<path d="M12 3a2.985 2.985 0 0 0-3 3v5.203c0 1.65 1.36 3.047 3 3.047s3-1.36 3-3.047V6c0-1.687-1.313-3-3-3Z"></path>
+</svg>`;
+const soundUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.122 2.448S15.061 7.5 11.25 7.5h-7.5a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 .75.75h7.5c3.81 0 7.872 5.073 7.872 5.073.284.375 1.128.119 1.128-.46V2.906c0-.577-.797-.882-1.128-.458Z"></path>
+<path d="M3 12s-.75-.281-.75-1.5C2.25 9.281 3 9 3 9"></path>
+<path d="M21 11.531s.75-.203.75-1.031c0-.828-.75-1.031-.75-1.031"></path>
+<path d="M12 7.5v6"></path>
+<path d="M5.25 7.5v6"></path>
+<path d="M6.75 13.5v7.875a.375.375 0 0 0 .375.375h2.484a.75.75 0 0 0 .717-.972C9.933 19.518 9 18.098 9 15.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75H9"></path>
+</svg>`;
+
+var textContainer = document.getElementById("text-container");
+var speakerButton = document.getElementById("speaker-button");
+var speaking = false;
+speakerButton.addEventListener("click", function () {
+  if (speaking) {
+    window.speechSynthesis.pause();
+    speakerButton.innerHTML = pauseUI;
+    speaking = false;
+  } else {
+    speakerButton.innerHTML = soundUI;
+    var text = textContainer.textContent;
+    var utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance);
+    speaking = true;
+ }
+});
+var textPrompt = document.getElementById("text-prompt");
+var microphoneButton = document.getElementById("microphone-button");
+var listening = false;
+microphoneButton.addEventListener("click", function() {
+  if(listening){
+    microphoneButton.innerHTML = micUI;
+    listening = false;
+  }else{
+    microphoneButton.innerHTML = listeningUI;
+  var recognition = new webkitSpeechRecognition();
+  recognition.interimResults = false;
+  recognition.lang = "en-US";
+  recognition.start();
+  recognition.onresult = function(event) {
+  textPrompt.value = event.results[0][0].transcript;
+  listening = true;
+  }
+  }
+});
 // URL for POST requests
 const gptEndpoint = "https://api.openai.com/v1/completions";
 
@@ -9,6 +65,7 @@ const reqStatus = document.getElementById("request-status");
 
 // Attach click behavior to the button
 reqButton.onclick = function () {
+  microphoneButton.innerHTML = micUI;
   // Disable request button to prevent duplicate requests
   reqButton.disabled = true;
   // Give some feedback to user
@@ -127,43 +184,3 @@ function addText(jsonData, prompt) {
   reqStatus.innerHTML =
     jsonData.choices.length + ' responses received for "' + prompt + '"';
 }
-
-var textContainer = document.getElementById("text-container");
-var speakerButton = document.getElementById("speaker-button");
-var speaking = false;
-const pauseUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M9 4.5h-.75v15H9v-15Z"></path><path d="M15.75 4.5H15v15h.75v-15Z"></path> </svg>`;
-const soundUI = `<svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.122 2.448S15.061 7.5 11.25 7.5h-7.5a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 .75.75h7.5c3.81 0 7.872 5.073 7.872 5.073.284.375 1.128.119 1.128-.46V2.906c0-.577-.797-.882-1.128-.458Z"></path>
-<path d="M3 12s-.75-.281-.75-1.5C2.25 9.281 3 9 3 9"></path>
-<path d="M21 11.531s.75-.203.75-1.031c0-.828-.75-1.031-.75-1.031"></path>
-<path d="M12 7.5v6"></path>
-<path d="M5.25 7.5v6"></path>
-<path d="M6.75 13.5v7.875a.375.375 0 0 0 .375.375h2.484a.75.75 0 0 0 .717-.972C9.933 19.518 9 18.098 9 15.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75H9"></path>
-</svg>`;
-speakerButton.addEventListener("click", function () {
-  if (speaking) {
-    window.speechSynthesis.pause();
-    speakerButton.innerHTML = pauseUI;
-    speaking = false;
-  } else {
-    speakerButton.innerHTML = soundUI;
-    var text = textContainer.textContent;
-    var utterance = new SpeechSynthesisUtterance(text);
-    window.speechSynthesis.speak(utterance);
-    speaking = true;
-  }
-});
-var textPrompt = document.getElementById("text-prompt");
-var microphoneButton = document.getElementById("microphone-button");
-
-microphoneButton.addEventListener("click", function() {
-  var recognition = new webkitSpeechRecognition();
-  recognition.interimResults = false;
-  recognition.lang = "en-US";
-  recognition.start();
-
-  recognition.onresult = function(event) {
-    textPrompt.value = event.results[0][0].transcript;
-  };
-});
