@@ -39,23 +39,25 @@ speakerButton.addEventListener("click", function () {
 });
 var textPrompt = document.getElementById("text-prompt");
 var microphoneButton = document.getElementById("microphone-button");
+var recognition = new webkitSpeechRecognition || SpeechRecognition;
 var listening = false;
 microphoneButton.addEventListener("click", function() {
   if(listening){
     microphoneButton.innerHTML = micUI;
+    recognition.stop();
     listening = false;
   }else{
     microphoneButton.innerHTML = listeningUI;
-  var recognition = new webkitSpeechRecognition();
-  recognition.interimResults = false;
-  recognition.lang = "en-US";
-  recognition.start();
-  recognition.onresult = function(event) {
-  textPrompt.value = event.results[0][0].transcript;
-  listening = true;
-  }
+    recognition.interimResults = false;
+    recognition.lang = "en-US";
+    recognition.start();
+    recognition.onresult = function(event) {
+      textPrompt.value = event.results[0][0].transcript;
+      listening = true;
+    }
   }
 });
+
 // URL for POST requests
 const gptEndpoint = "https://api.openai.com/v1/completions";
 
