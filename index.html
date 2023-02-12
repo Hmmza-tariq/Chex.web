@@ -25,7 +25,7 @@
 
     .header {
       background-color: #018685;
-      padding:10px 20px;
+      padding: 10px 20px;
       border: 2px solid #004D4D;
       border-radius: 20px;
       width: fit-content;
@@ -64,11 +64,46 @@
       border: 1px solid #004D4D;
       border-radius: 10px;
     }
-    #api-key{
+
+    #api-key {
       width: 90%;
     }
+
+    #button-request {
+      display: flex;
+      align-items: center;
+      font-family: inherit;
+      font-weight: 500;
+      font-size: 17px;
+      padding: 0.8em 1.3em 0.8em 0.9em;
+      color: white;
+      background: #ad5389;
+      /* background: linear-gradient(to right, #0f0c29, #302b63, #24243e); */
+      /* border: none; */
+      letter-spacing: 0.05em;
+      border-radius: 16px;
+    }
+
+    #button-request svg {
+      margin-right: 3px;
+      transform: rotate(30deg);
+      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    #button-request span {
+      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    #button-request:hover svg {
+      transform: translateX(5px) rotate(90deg);
+    }
+
+    #button-request:hover span {
+      transform: translateX(7px);
+    }
+
     #button-request,
-    #speaker-button{
+    #speaker-button {
       padding: 10px 20px;
       background-color: #00756A;
       color: #00DBC7;
@@ -78,22 +113,25 @@
       border: 3px solid #004D4D;
       border-radius: 12px;
     }
-    #microphone-button{
+
+    #microphone-button {
       color: #00DBC7;
-    border: 2px solid #004D4D;
-    padding: 7px 3px;
-    background-color: #009586;
-    border: 1px solid #004D4D;
-    border-radius: 10px;
-    position: relative;
-    bottom: -5px;
+      border: 2px solid #004D4D;
+      padding: 7px 3px;
+      background-color: #009586;
+      border: 1px solid #004D4D;
+      border-radius: 10px;
+      position: relative;
+      bottom: -5px;
     }
+
     #speaker-button {
       position: fixed;
       bottom: 20px;
       right: 20px;
       width: fit-content;
     }
+
     .radio-container {
       display: flex;
       align-items: flex-start;
@@ -106,6 +144,7 @@
       align-items: center;
       padding-left: 10vw;
     }
+
     .output-section {
       color: #00DBC7;
       background-color: #00756A;
@@ -146,11 +185,13 @@
     <h3>Prompt Input</h3>
     <input type="text" id="text-prompt" placeholder="eg: mass of sun">
     <button id="microphone-button">
-      <svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+        stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 21h6"></path>
         <path d="M18 9.75v1.5c0 3.3-2.7 6-6 6s-6-2.7-6-6v-1.5"></path>
         <path d="M12 17.25V21"></path>
-        <path d="M12 3a2.985 2.985 0 0 0-3 3v5.203c0 1.65 1.36 3.047 3 3.047s3-1.36 3-3.047V6c0-1.687-1.313-3-3-3Z"></path>
+        <path d="M12 3a2.985 2.985 0 0 0-3 3v5.203c0 1.65 1.36 3.047 3 3.047s3-1.36 3-3.047V6c0-1.687-1.313-3-3-3Z">
+        </path>
       </svg>
     </button>
   </div>
@@ -158,27 +199,36 @@
     <p class="models">
     <h3>Text Model:</h3>
     <div class="radio-container">
-    <div class="radio-input">
-      <input type="radio" id="model-davinci" name="text-model" value="text-davinci-003">
-      <label for="text-davinci-003">Davinci (better)</label>
+      <div class="radio-input">
+        <input type="radio" id="model-davinci" name="text-model" value="text-davinci-003">
+        <label for="text-davinci-003">Davinci (better)</label>
+      </div>
+      <div class="radio-input">
+        <input type="radio" id="model-curie" name="text-model" value="text-curie-001">
+        <label for="text-curie-001">Curie</label>
+      </div>
+      <div class="radio-input">
+        <input type="radio" id="model-babbage" name="text-model" value="text-babbage-001">
+        <label for="text-babbage-001">Babbage</label>
+      </div>
+      <div class="radio-input">
+        <input type="radio" id="model-ada" name="text-model" value="text-ada-001" checked>
+        <label for="text-ada-001">Ada (faster)</label>
+      </div>
     </div>
-    <div class="radio-input">
-      <input type="radio" id="model-curie" name="text-model" value="text-curie-001">
-      <label for="text-curie-001">Curie</label>
-    </div>
-    <div class="radio-input">
-      <input type="radio" id="model-babbage" name="text-model" value="text-babbage-001">
-      <label for="text-babbage-001">Babbage</label>
-    </div>
-    <div class="radio-input">
-      <input type="radio" id="model-ada" name="text-model" value="text-ada-001" checked>
-      <label for="text-ada-001">Ada (faster)</label>
-    </div>
-  </div>
     <br><br>
     </p>
     <div>
-      <button type="submit" id="button-request">Submit</button>
+      <button type="submit" id="button-request">
+        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M5 13c0-5.088 2.903-9.436 7-11.182C16.097 3.564 19 7.912 19 13c0 .823-.076 1.626-.22 2.403l1.94 1.832a.5.5 0 0 1 .095.603l-2.495 4.575a.5.5 0 0 1-.793.114l-2.234-2.234a1 1 0 0 0-.707-.293H9.414a1 1 0 0 0-.707.293l-2.234 2.234a.5.5 0 0 1-.793-.114l-2.495-4.575a.5.5 0 0 1 .095-.603l1.94-1.832C5.077 14.626 5 13.823 5 13zm1.476 6.696l.817-.817A3 3 0 0 1 9.414 18h5.172a3 3 0 0 1 2.121.879l.817.817.982-1.8-1.1-1.04a2 2 0 0 1-.593-1.82c.124-.664.187-1.345.187-2.036 0-3.87-1.995-7.3-5-8.96C8.995 5.7 7 9.13 7 13c0 .691.063 1.372.187 2.037a2 2 0 0 1-.593 1.82l-1.1 1.039.982 1.8zM12 13a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+            fill="currentColor"></path>
+        </svg>
+        <span>Submit</span>
+      </button>
+      <!-- <button type="submit" id="button-request">Submit</button> -->
     </div>
   </div>
 
@@ -188,17 +238,24 @@
       <div id="request-status">No request performed yet</div>
     </div>
   </div>
-  <div class="output-section"><h3>Output</h3>
-    <div id="text-container" ></div>
+  <div class="output-section">
+    <h3>Output</h3>
+    <div id="text-container"></div>
   </div>
-  <button id="speaker-button" onclick="speak()"><svg width="25" height="25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19.122 2.448S15.061 7.5 11.25 7.5h-7.5a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 .75.75h7.5c3.81 0 7.872 5.073 7.872 5.073.284.375 1.128.119 1.128-.46V2.906c0-.577-.797-.882-1.128-.458Z"></path>
-    <path d="M3 12s-.75-.281-.75-1.5C2.25 9.281 3 9 3 9"></path>
-    <path d="M21 11.531s.75-.203.75-1.031c0-.828-.75-1.031-.75-1.031"></path>
-    <path d="M12 7.5v6"></path>
-    <path d="M5.25 7.5v6"></path>
-    <path d="M6.75 13.5v7.875a.375.375 0 0 0 .375.375h2.484a.75.75 0 0 0 .717-.972C9.933 19.518 9 18.098 9 15.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75H9"></path>
-  </svg></button>
+  <button id="speaker-button" onclick="speak()"><svg width="25" height="25" fill="none" stroke="currentColor"
+      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M19.122 2.448S15.061 7.5 11.25 7.5h-7.5a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 .75.75h7.5c3.81 0 7.872 5.073 7.872 5.073.284.375 1.128.119 1.128-.46V2.906c0-.577-.797-.882-1.128-.458Z">
+      </path>
+      <path d="M3 12s-.75-.281-.75-1.5C2.25 9.281 3 9 3 9"></path>
+      <path d="M21 11.531s.75-.203.75-1.031c0-.828-.75-1.031-.75-1.031"></path>
+      <path d="M12 7.5v6"></path>
+      <path d="M5.25 7.5v6"></path>
+      <path
+        d="M6.75 13.5v7.875a.375.375 0 0 0 .375.375h2.484a.75.75 0 0 0 .717-.972C9.933 19.518 9 18.098 9 15.75h.75a.75.75 0 0 0 .75-.75v-.75a.75.75 0 0 0-.75-.75H9">
+      </path>
+    </svg></button>
 </body>
 <script type="text/javascript" src="script.js"></script>
 
