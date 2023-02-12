@@ -21,12 +21,15 @@ const soundUI = `<svg width="25" height="25" fill="none" stroke="currentColor" s
 </svg>`;
 
 var speakerButton = document.getElementById("speaker-button");
+var textCont = document.getElementById("text-container");
 var speaking = false;
-var textContainer = document.getElementById("text-container");
-var text = textContainer.textContent;
+var text;
+
 function speak() {
+  text = textCont.innerText;
+  console.log(text);
   if (speaking) {
-    window.speechSynthesis.stop();
+    window.speechSynthesis.pause();
     speakerButton.innerHTML = pauseUI;
     speaking = false;
   } else {
@@ -34,11 +37,54 @@ function speak() {
     if ("speechSynthesis" in window) {
       var msg = new SpeechSynthesisUtterance();
       msg.text = text;
+      console.log(msg);
       window.speechSynthesis.speak(msg);
     }
     speaking = true;
   }
 }
+//read the text loud in js?
+
+// var btnSpeak = document.querySelector('#speaker-button');
+// var txtInput = document.querySelector('#text-container');
+// var synth = window.speechSynthesis;
+// var voices = [];
+
+// PopulateVoices();
+// if(speechSynthesis !== undefined){
+//     speechSynthesis.onvoiceschanged = PopulateVoices;
+// }
+
+// btnSpeak.addEventListener('click', ()=> {
+//     var toSpeak = new SpeechSynthesisUtterance(txtInput.textContent);
+//     toSpeak.voice = voices[0]; // Spanish
+//     synth.speak(toSpeak);
+// });
+
+// function PopulateVoices(){
+//     voices = synth.getVoices();
+//     voices.forEach((item, index) => console.log(item.name, index));
+// }
+
+//<p id="foo">Text</a>
+
+// var elementID = document.querySelector('#foo');
+
+// var toSpeak = new SpeechSynthesisUtterance(txtInput.value);
+
+// var toSpeak = new SpeechSynthesisUtterance(txtInput.textContent);
+
+// voices.forEach((item, index) => console.log(item.name, index));
+
+// Microsoft David - English (United States) 0
+// Microsoft Mark - English (United States) 1
+// Microsoft Zira - English (United States) 2
+// ...
+
+//toSpeak.voice = voices[7]; // Spanish
+
+//Source: https://stackoverflow.com/questions/72422375
+
 // speakerButton.addEventListener("click", function () {
 // var text = textContainer.textContent;
 //   var utterance = new SpeechSynthesisUtterance(text);
@@ -205,7 +251,8 @@ function addText(jsonData, prompt) {
     const answerDiv = document.createElement("div");
     answerDiv.className = "answer";
     const answerP = document.createElement("p");
-    answerP.innerHTML = textData;
+    answerP.className = "readable";
+    textCont.innerHTML = textData;
     answerDiv.appendChild(answerP);
 
     // Reason text box
