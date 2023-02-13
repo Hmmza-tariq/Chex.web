@@ -21,6 +21,11 @@
       width: 75%;
       margin: 0 auto;
       text-align: center;
+      border-radius: 30px;
+      box-shadow: 30px 30px 62px #006259,
+        -30px -30px 62px #00887b;
+      padding: 10px 10px 10px 10px;
+      margin-top: 10px;
     }
 
     .header {
@@ -69,38 +74,6 @@
       width: 90%;
     }
 
-    #button-request {
-      display: flex;
-      align-items: center;
-      font-family: inherit;
-      font-weight: 500;
-      font-size: 17px;
-      padding: 0.8em 1.3em 0.8em 0.9em;
-      color: white;
-      background: #ad5389;
-      /* background: linear-gradient(to right, #0f0c29, #302b63, #24243e); */
-      /* border: none; */
-      letter-spacing: 0.05em;
-      border-radius: 16px;
-    }
-
-    #button-request svg {
-      margin-right: 3px;
-      transform: rotate(30deg);
-      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-    }
-
-    #button-request span {
-      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-    }
-
-    #button-request:hover svg {
-      transform: translateX(5px) rotate(90deg);
-    }
-
-    #button-request:hover span {
-      transform: translateX(7px);
-    }
 
     #button-request,
     #speaker-button {
@@ -169,10 +142,63 @@
       border: 2px solid white;
       resize: none;
     }
+
+    .cssbuttons-io-button {
+      background: #A370F0;
+      color: white;
+      font-family: inherit;
+      padding: 0.35em;
+      padding-left: 1.2em;
+      font-size: 17px;
+      font-weight: 500;
+      border-radius: 0.9em;
+      border: none;
+      letter-spacing: 0.05em;
+      display: flex;
+      left: 25vw;
+      overflow: hidden;
+      position: relative;
+      height: 2.8em;
+      width: 8.3em;
+      align-items: center;
+    }
+
+    .cssbuttons-io-button .icon {
+      background: #20bcad;
+      margin-left: 1em;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2.2em;
+      width: 2.2em;
+      border-radius: 0.7em;
+      box-shadow: 0.1em 0.1em 0.6em 0.2em #004D4D;
+      right: 0.3em;
+      transition: all 0.3s;
+    }
+
+    .cssbuttons-io-button:hover .icon {
+      width: calc(100% - 0.6em);
+    }
+
+    .cssbuttons-io-button .icon svg {
+      width: 1.1em;
+      transition: transform 0.3s;
+      color: #004D4D;
+    }
+
+    .cssbuttons-io-button:hover .icon svg {
+      transform: translateX(0.1em);
+    }
+
+    .cssbuttons-io-button:active .icon {
+      transform: scale(0.95);
+    }
   </style>
 </head>
 
-<body>
+<body class="card">
   <div class="header">
     <h1>Chex</h1>
   </div>
@@ -219,13 +245,14 @@
     <br><br>
     </p>
     <div>
-      <button type="submit" id="button-request">
-        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 0h24v24H0z" fill="none"></path>
-          <path
-            d="M5 13c0-5.088 2.903-9.436 7-11.182C16.097 3.564 19 7.912 19 13c0 .823-.076 1.626-.22 2.403l1.94 1.832a.5.5 0 0 1 .095.603l-2.495 4.575a.5.5 0 0 1-.793.114l-2.234-2.234a1 1 0 0 0-.707-.293H9.414a1 1 0 0 0-.707.293l-2.234 2.234a.5.5 0 0 1-.793-.114l-2.495-4.575a.5.5 0 0 1 .095-.603l1.94-1.832C5.077 14.626 5 13.823 5 13zm1.476 6.696l.817-.817A3 3 0 0 1 9.414 18h5.172a3 3 0 0 1 2.121.879l.817.817.982-1.8-1.1-1.04a2 2 0 0 1-.593-1.82c.124-.664.187-1.345.187-2.036 0-3.87-1.995-7.3-5-8.96C8.995 5.7 7 9.13 7 13c0 .691.063 1.372.187 2.037a2 2 0 0 1-.593 1.82l-1.1 1.039.982 1.8zM12 13a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
-            fill="currentColor"></path>
-        </svg>
+      <button type="submit" id="button-request" class="cssbuttons-io-button">
+        <div class="icon">
+          <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+              fill="currentColor"></path>
+          </svg>
+        </div>
         <span>Submit</span>
       </button>
       <!-- <button type="submit" id="button-request">Submit</button> -->
